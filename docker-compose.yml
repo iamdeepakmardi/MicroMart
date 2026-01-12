@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+  mongo:
+    image: mongo
+    container_name: micromart-mongo
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongo_data:/data/db
+
+  auth:
+    build:
+      context: .
+      dockerfile: services/auth/Dockerfile
+    container_name: micromart-auth
+    ports:
+      - '3000:3000'
+    environment:
+      - MONGODB_URI=mongodb://mongo:27017/auth
+      - JWT_KEY=SU93R$3CRETKEY
+    depends_on:
+      - mongo
+
+volumes:
+  mongo_data:
