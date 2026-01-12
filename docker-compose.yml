@@ -21,5 +21,18 @@ services:
     depends_on:
       - mongo
 
+  catalog:
+    build:
+      context: .
+      dockerfile: services/catalog/Dockerfile
+    container_name: micromart-catalog
+    ports:
+      - '3001:3000'
+    environment:
+      - MONGODB_URI=mongodb://mongo:27017/catalog
+      - JWT_KEY=SU93R$3CRETKEY
+    depends_on:
+      - mongo
+
 volumes:
   mongo_data:

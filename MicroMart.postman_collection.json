@@ -104,12 +104,120 @@
                     "response": []
                 }
             ]
+        },
+        {
+            "name": "Catalog",
+            "item": [
+                {
+                    "name": "Index Products",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrlProducts}}/api/products",
+                            "host": [
+                                "{{baseUrlProducts}}"
+                            ],
+                            "path": [
+                                "api",
+                                "products"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Create Product (Admin)",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{adminToken}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"name\": \"New Product\",\n    \"price\": 100,\n    \"inventory\": 10,\n    \"description\": \"A great product\",\n    \"category\": \"{{categoryId}}\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{baseUrlProducts}}/api/products",
+                            "host": [
+                                "{{baseUrlProducts}}"
+                            ],
+                            "path": [
+                                "api",
+                                "products"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Index Categories",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrlProducts}}/api/categories",
+                            "host": [
+                                "{{baseUrlProducts}}"
+                            ],
+                            "path": [
+                                "api",
+                                "categories"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Create Category (Admin)",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{adminToken}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"name\": \"Electronics\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{baseUrlProducts}}/api/categories",
+                            "host": [
+                                "{{baseUrlProducts}}"
+                            ],
+                            "path": [
+                                "api",
+                                "categories"
+                            ]
+                        }
+                    }
+                }
+            ]
         }
     ],
     "variable": [
         {
             "key": "baseUrl",
             "value": "http://localhost:3000",
+            "type": "string"
+        },
+        {
+            "key": "baseUrlProducts",
+            "value": "http://localhost:3001",
             "type": "string"
         }
     ]

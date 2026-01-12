@@ -15,6 +15,7 @@ interface UserDoc extends mongoose.Document {
     firstName?: string;
     lastName?: string;
     username?: string;
+    isAdmin: boolean;
     createdAt: string;
     updatedAt: string;
     id: string; // Added explicitly
@@ -44,6 +45,10 @@ const userSchema = new mongoose.Schema(
         username: {
             type: String,
             // required: true // TODO: Make required  
+        },
+        isAdmin: {
+            type: Boolean,
+            default: false
         }
     },
     {
@@ -53,6 +58,8 @@ const userSchema = new mongoose.Schema(
                 delete ret._id;
                 delete ret.password;
                 delete ret.__v;
+                // We typically keep isAdmin in JSON so frontend knows, but safeguard strictly if needed.
+                // Keeping it for now.
             }
         },
         timestamps: true
