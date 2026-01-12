@@ -22,6 +22,10 @@ app.use(currentUserRouter);
 app.use(signinRouter);
 app.use(signupRouter);
 
+app.get('/api/users/ping', (req, res) => {
+    res.send('pong');
+});
+
 app.all('*', async (req, res) => {
     throw new NotFoundError();
 });
