@@ -8,4 +8,5 @@ module.exports = {
   transform: {
     ...tsJestTransformCfg,
   },
+  setupFilesAfterEnv: ['./__test__/setup.ts'],
 };

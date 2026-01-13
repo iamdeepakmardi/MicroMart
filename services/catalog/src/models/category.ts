@@ -10,6 +10,7 @@ interface CategoryDoc extends mongoose.Document {
     name: string;
     description?: string;
     parentCategory?: string;
+    id: string;
 }
 
 interface CategoryModel extends mongoose.Model<CategoryDoc> {

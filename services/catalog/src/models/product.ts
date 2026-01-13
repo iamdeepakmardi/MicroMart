@@ -17,6 +17,7 @@ interface ProductDoc extends mongoose.Document {
     inventory: number;
     images?: string[];
     version: number;
+    id: string;
 }
 
 interface ProductModel extends mongoose.Model<ProductDoc> {
@@ -58,6 +59,13 @@ const productSchema = new mongoose.Schema({
             delete ret.__v;
         }
     }
+});
+
+// Auto-increment version on save to ensure OCC works for all field updates
+productSchema.pre('save', async function () {
+    console.log(`[Product Model] Pre-save: ID=${this.id}, Version=${this.get('version')}`);
+    this.increment();
+    console.log(`[Product Model] Post-increment: Version=${this.get('version')}`);
 });
 
 productSchema.set('versionKey', 'version');
