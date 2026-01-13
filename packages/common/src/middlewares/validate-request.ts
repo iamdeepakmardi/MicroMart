@@ -10,7 +10,7 @@ export const validateRequest = (
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-        // Simplified for now, just throwing first error or generic
+        // Just throwing first error or generic
         throw new BadRequestError(errors.array()[0].msg);
     }
 

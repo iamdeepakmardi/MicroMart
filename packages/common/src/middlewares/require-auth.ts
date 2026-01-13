@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { BadRequestError } from '../errors/bad-request-error'; // Should be NotAuthorizedError but reusing for speed
+import { NotAuthorizedError } from '../errors/not-authorized-error';
 
 export const requireAuth = (
     req: Request,
@@ -7,7 +7,7 @@ export const requireAuth = (
     next: NextFunction
 ) => {
     if (!req.currentUser) {
-        throw new BadRequestError('Not authorized');
+        throw new NotAuthorizedError();
     }
 
     next();
