@@ -8,7 +8,6 @@ const start = async () => {
         throw new Error('JWT_KEY must be defined');
     }
     if (!process.env.MONGODB_URI) {
-        // Fallback for dev if not set, or throw
         console.warn('MONGODB_URI not defined, using default');
     }
 

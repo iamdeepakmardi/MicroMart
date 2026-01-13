@@ -58,8 +58,6 @@ const userSchema = new mongoose.Schema(
                 delete ret._id;
                 delete ret.password;
                 delete ret.__v;
-                // We typically keep isAdmin in JSON so frontend knows, but safeguard strictly if needed.
-                // Keeping it for now.
             }
         },
         timestamps: true

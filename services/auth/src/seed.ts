@@ -23,12 +23,12 @@ const seed = async () => {
         } else {
             const admin = User.build({
                 email: adminEmail,
-                password: 'password', // TODO: Change checking env var
+                password: 'password', // TODO: Move to env
                 username: 'admin',
                 firstName: 'Admin',
                 lastName: 'User'
             });
-            // We need to set isAdmin manually since build() only expects UserAttrs
+
             admin.set({ isAdmin: true });
             await admin.save();
             console.log('Admin user created');

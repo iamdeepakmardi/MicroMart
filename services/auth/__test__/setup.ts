@@ -49,16 +49,5 @@ global.signin = async () => {
         })
         .expect(201);
 
-    // For Cookie-based auth
-    // const cookie = response.get('Set-Cookie');
-    // return cookie;
-
-    // For token based auth (legacy)
-    // We return array to match cookie signature usually used in this pattern,
-    // OR we just return the token string if we want.
-    // But since legacy used 'token' in BODY, we don't need a global helper that sets cookies?
-    // The helper usually simulates a logged in user.
-    // If our middleware checks Header, we need to return a Header value.
-    // Let's assume we want the token.
     return [response.body.token];
 };

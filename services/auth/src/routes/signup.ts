@@ -44,9 +44,6 @@ router.post(
             process.env.JWT_KEY!
         );
 
-        // TODO: Store it on session object (if using cookies) OR return it
-        // req.session = { jwt: userJwt };
-
         res.status(201).send({ user, token: userJwt });
     }
 );
