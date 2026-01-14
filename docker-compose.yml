@@ -34,5 +34,18 @@ services:
     depends_on:
       - mongo
 
+  orders:
+    build:
+      context: .
+      dockerfile: services/orders/Dockerfile
+    container_name: micromart-orders
+    ports:
+      - '3002:3000'
+    environment:
+      - MONGODB_URI=mongodb://mongo:27017/orders
+      - JWT_KEY=SU93R$3CRETKEY
+    depends_on:
+      - mongo
+
 volumes:
   mongo_data:
