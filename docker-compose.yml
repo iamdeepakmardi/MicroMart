@@ -89,5 +89,23 @@ services:
       - nats
       - redis
 
+  payments:
+    build:
+      context: .
+      dockerfile: services/payments/Dockerfile
+    container_name: micromart-payments
+    ports:
+      - '3003:3000'
+    environment:
+      - MONGODB_URI=mongodb://mongo:27017/payments
+      - JWT_KEY=SU93R$3CRETKEY
+      - NATS_CLIENT_ID=payments
+      - NATS_URL=http://nats:4222
+      - NATS_CLUSTER_ID=micromart
+      - STRIPE_KEY=${STRIPE_KEY}
+    depends_on:
+      - mongo
+      - nats
+
 volumes:
   mongo_data:
