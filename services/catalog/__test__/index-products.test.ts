@@ -22,8 +22,8 @@ it('can fetch a list of products', async () => {
     await createProduct();
     await createProduct();
 
-    const count = await Product.countDocuments();
-    console.log(`DEBUG: Product Count in DB: ${count}`);
+    // const count = await Product.countDocuments();
+    // console.log(`DEBUG: Product Count in DB: ${count}`);
 
     const response = await request(app)
         .get('/api/products')

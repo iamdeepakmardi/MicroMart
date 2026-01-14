@@ -63,9 +63,7 @@ const productSchema = new mongoose.Schema({
 
 // Auto-increment version on save to ensure OCC works for all field updates
 productSchema.pre('save', async function () {
-    console.log(`[Product Model] Pre-save: ID=${this.id}, Version=${this.get('version')}`);
     this.increment();
-    console.log(`[Product Model] Post-increment: Version=${this.get('version')}`);
 });
 
 productSchema.set('versionKey', 'version');
