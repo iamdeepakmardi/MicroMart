@@ -71,5 +71,23 @@ services:
       "-cid", "micromart"
     ]
 
+  redis:
+    image: redis:alpine
+    container_name: micromart-redis
+
+  expiration:
+    build:
+      context: .
+      dockerfile: services/expiration/Dockerfile
+    container_name: micromart-expiration
+    environment:
+      - NATS_CLIENT_ID=expiration
+      - NATS_URL=http://nats:4222
+      - NATS_CLUSTER_ID=micromart
+      - REDIS_HOST=redis
+    depends_on:
+      - nats
+      - redis
+
 volumes:
   mongo_data:
