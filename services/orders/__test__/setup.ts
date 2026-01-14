@@ -5,6 +5,8 @@ declare global {
     var signin: () => string[];
 }
 
+jest.mock('../src/nats-wrapper');
+
 jest.setTimeout(600000); // 10 minutes
 
 beforeAll(async () => {

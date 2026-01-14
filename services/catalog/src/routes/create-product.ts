@@ -3,6 +3,8 @@ import { body } from 'express-validator';
 import { requireAuth, requireAdmin, validateRequest, BadRequestError, NotFoundError } from '@micromart/common';
 import { Product } from '../models/product';
 import { Category } from '../models/category';
+import { TicketCreatedPublisher } from '../events/publishers/ticket-created-publisher';
+import { natsWrapper } from '../nats-wrapper';
 
 const router = express.Router();
 
@@ -35,6 +37,14 @@ router.post(
             images
         });
         await product.save();
+
+        await new TicketCreatedPublisher(natsWrapper.client).publish({
+            id: product.id,
+            title: product.name,
+            price: product.price,
+            userId: req.currentUser!.id,
+            version: product.version
+        });
 
         res.status(201).send(product);
     }

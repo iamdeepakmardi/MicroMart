@@ -31,5 +31,8 @@
     "ts-jest": "^29.4.6",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "node-nats-streaming": "^0.3.2"
   }
 }

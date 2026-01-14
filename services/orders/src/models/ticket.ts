@@ -3,6 +3,7 @@ import { Order, OrderStatus } from './order';
 
 // Interface for Ticket attributes (what we provide when building)
 interface TicketAttrs {
+    id: string; // Add id to attrs
     title: string;
     price: number;
 }
@@ -12,7 +13,7 @@ export interface TicketDoc extends mongoose.Document {
     title: string;
     price: number;
     version: number;
-    id: string; // Add this
+    id: string;
     isReserved(): Promise<boolean>;
 }
 
@@ -34,17 +35,21 @@ const ticketSchema = new mongoose.Schema({
     }
 }, {
     toJSON: {
-        transform(doc, ret: any) { // Explicit any to allow delete
+        transform(doc, ret: any) {
             ret.id = ret._id;
             delete ret._id;
         }
-    }
+    },
+    optimisticConcurrency: true,
+    versionKey: 'version'
 });
 
-// ... existing settings ...
-
 ticketSchema.statics.build = (attrs: TicketAttrs) => {
-    return new Ticket(attrs);
+    return new Ticket({
+        _id: attrs.id, // Map id to _id
+        title: attrs.title,
+        price: attrs.price
+    });
 };
 
 // Run query to look for orders. 

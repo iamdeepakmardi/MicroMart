@@ -31,8 +31,12 @@ services:
     environment:
       - MONGODB_URI=mongodb://mongo:27017/catalog
       - JWT_KEY=SU93R$3CRETKEY
+      - NATS_CLIENT_ID=catalog
+      - NATS_URL=http://nats:4222
+      - NATS_CLUSTER_ID=micromart
     depends_on:
       - mongo
+      - nats
 
   orders:
     build:
@@ -44,8 +48,28 @@ services:
     environment:
       - MONGODB_URI=mongodb://mongo:27017/orders
       - JWT_KEY=SU93R$3CRETKEY
+      - NATS_CLIENT_ID=orders
+      - NATS_URL=http://nats:4222
+      - NATS_CLUSTER_ID=micromart
     depends_on:
       - mongo
+      - nats
+
+  nats:
+    image: nats-streaming:0.17.0
+    container_name: micromart-nats
+    ports:
+      - 4222:4222
+      - 8222:8222
+    command: [
+      "-p", "4222",
+      "-m", "8222",
+      "-hbi", "5s",
+      "-hbt", "5s",
+      "-hbf", "2",
+      "-SD",
+      "-cid", "micromart"
+    ]
 
 volumes:
   mongo_data:
