@@ -1,0 +1,23 @@
+name: tests-auth
+
+on:
+  pull_request:
+    paths:
+      - 'services/auth/**'
+      - 'packages/common/**'
+      - '.github/workflows/test-auth.yaml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Dependencies
+        run: npm install
+        working-directory: services/auth
+      - name: Run Tests
+        run: npm test
+        working-directory: services/auth
+        env:
+          JWT_KEY: asdf
+          NODE_TLS_REJECT_UNAUTHORIZED: 0

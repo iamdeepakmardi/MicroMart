@@ -1,0 +1,19 @@
+name: tests-common
+
+on:
+  pull_request:
+    paths:
+      - 'packages/common/**'
+      - '.github/workflows/test-common.yaml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Dependencies
+        run: npm install
+        working-directory: packages/common
+      - name: Build
+        run: npm run build
+        working-directory: packages/common
