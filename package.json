@@ -1,0 +1,30 @@
+{
+  "name": "micromart",
+  "version": "1.0.0",
+  "description": "Build a scalable e-commerce platform using microservices architecture and Docker. The platform will handle various aspects of an online store, such as product catalog management, user authentication, shopping cart, payment processing, and order management. Each of these features will be implemented as separate microservices, allowing for independent development, deployment, and scaling.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iamdeepakmardi/MicroMart.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "workspaces": [
+    "packages/*",
+    "services/*"
+  ],
+  "bugs": {
+    "url": "https://github.com/iamdeepakmardi/MicroMart/issues"
+  },
+  "homepage": "https://github.com/iamdeepakmardi/MicroMart#readme",
+  "dependencies": {
+    "jest": "^30.2.0",
+    "ts-jest": "^29.4.6",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}

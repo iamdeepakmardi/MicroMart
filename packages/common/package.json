@@ -1,0 +1,31 @@
+{
+  "name": "@micromart/common",
+  "version": "1.0.0",
+  "description": "Shared code for MicroMart services",
+  "main": "./build/index.js",
+  "types": "./build/index.d.ts",
+  "files": [
+    "build/**/*"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf build",
+    "pub": "git add . && git commit -m \"Updates to common\" && npm version patch && npm run build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@types/cookie-session": "^2.0.44",
+    "@types/express": "^4.17.21",
+    "@types/jsonwebtoken": "^9.0.5",
+    "cookie-session": "^2.0.0",
+    "express": "^4.21.0",
+    "express-validator": "^7.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "node-nats-streaming": "^0.3.2"
+  }
+}
