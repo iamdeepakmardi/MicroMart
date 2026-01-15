@@ -24,6 +24,8 @@ export const currentUser = (
     let token;
     if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
         token = req.headers.authorization.split(' ')[1];
+    } else if (req.session && req.session.jwt) {
+        token = req.session.jwt;
     } else if (req.body && req.body.token) {
         token = req.body.token;
     }
