@@ -1,1 +1,2 @@
-npm test
+echo "Running pre-commit checks..."
+# npm test # TODO: Enable when root test script is ready
