@@ -1,0 +1,17 @@
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["localhost:9090"]
+
+  # Scrape Nginx to get traffic metrics (todo: requires Nginx stub_status)
+  # - job_name: 'nginx'
+  #   static_configs:
+  #     - targets: ['nginx:80']
+
+  # Scrape Auth Service
+  - job_name: "auth"
+    static_configs:
+      - targets: ["auth:3000"]
